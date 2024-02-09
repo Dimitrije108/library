@@ -10,6 +10,7 @@ const submitBtn = document.querySelector('.submitBtn');
 const bookGrid = document.querySelector('.book-grid');
 
 const myLibrary = [];
+const bookContainers = [];
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -38,13 +39,39 @@ function displayBooks() {
         if (object.displayed !== true) {
             const containerDiv = document.createElement('div');
             containerDiv.classList.add('book-container');
+
             for (const key in object) {
                 const para = document.createElement('p');
                 para.textContent = `${object[key]}`;
                 containerDiv.appendChild(para);
             }
+            const delBtn = document.createElement('button');
+            delBtn.classList.add('del-btn');
+            delBtn.textContent = 'Remove';
+            containerDiv.appendChild(delBtn);
+
+            containerDiv.setAttribute('data-array', myLibrary.indexOf(object));
+            bookContainers.push(containerDiv);
             bookGrid.appendChild(containerDiv);
+
+            delBtn.addEventListener('click', () => {
+                for (let i = 0; i <= myLibrary.length; i++) {
+                    if (Number(containerDiv.dataset.array) === i) {
+                        myLibrary.splice(Number(containerDiv.dataset.array), 1);
+                        containerDiv.remove();
+                        bookContainers.splice(Number(containerDiv.dataset.array), 1);
+                    }
+                }
+                displayBooks();
+            });
             object.displayed = true;
+        } else {
+            for (const container of bookContainers) {
+                if (container.innerText.includes(object.title)) {
+                container.setAttribute('data-array', myLibrary.indexOf(object));
+                console.log(container);
+                }
+            }
         }
     }
 }
