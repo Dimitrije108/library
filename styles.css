@@ -3,10 +3,16 @@
     src: url(fonts/biolilbert/Biolilbert-Rg.ttf);
 }
 
+@font-face {
+    font-family: biolibertBold;
+    src: url(fonts/biolilbert/Biolilbert-Bd.ttf);
+}
+
 html,
 body {
     margin: 0;
     padding: 0;
+    height: 100%;
 
     font-family: biolibert, sans-serif;
 }
@@ -15,26 +21,66 @@ body {
     height: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 5fr;
+    grid-template-rows: 1fr 6fr;
+
+    background-color: #e4e4e4;
 }
 
 button {
     font-family: inherit;
+    font-size: 100%;
 }
 
 /*HEADER styles*/
 
 .header {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
 
-    background-color: #94a3b8;
+    background-color: #e9d5ff;
+    box-shadow: 2px -5px 12px 8px rgba(122, 122, 122, 1);
+}
+
+.title {
+    display: flex;
+    flex: 1;
+}
+
+.title img {
+    width: 4rem;
+    margin-left: 2rem;
+}
+
+.title h1{
+    font-size: 3rem;
+    letter-spacing: 0.1rem;
+
+    margin: 0;
+    padding: 2rem 1rem 2rem 1rem;
 }
 
 .add-button {
+    margin-right: 2rem;
+    background-color: white;
+    padding: 0.5rem 2rem;
+    border: 2px dashed black;
+    border-radius: 2rem;
 
+    font-family: biolibertBold, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.add-button:hover {
+    cursor: pointer;
+    background-color: #e9d5ff;
+    border: 2px dashed black;
+    box-shadow: 3px 5px 20px -5px rgba(92,92,92,1);
+}
+
+.add-button:active {
+    background-color: #d8b4fe;
 }
 
 /* MAIN styles */
