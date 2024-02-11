@@ -12,6 +12,16 @@ const bookGrid = document.querySelector('.book-grid');
 const myLibrary = [];
 const bookContainers = [];
 
+const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'Not read');
+const theLastKingdom = new Book('The Last Kingdom', 'Bernard Cornwell', '352 pages', 'Read');
+const bladeRunner = new Book('Do Androids Dream of Electric Sheep?', 'Philip K. Dick', '210 pages', 'Not read');
+const affairAtStyles = new Book('The Mysterious Affair at Styles', 'Agatha Christie', '296 pages', 'Not read');
+
+myLibrary.push(theHobbit);
+myLibrary.push(theLastKingdom);
+myLibrary.push(bladeRunner);
+myLibrary.push(affairAtStyles);
+
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
@@ -19,62 +29,97 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-function addBookToLibrary(title, author, pages, read) {
-    title = bookTitle.value;
-    author = bookAuthor.value;
-    pages = bookPages.value;
+function addBookToLibrary() {
     if (bookRead.checked) {
         read = "Read";
     } else {
-        read = "Not read yet";
-    }
+        read = "Not read";
+    };
 
-    let newBook = new Book(title, author, pages, read);
+    let newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value, read);
     myLibrary.push(newBook);
-    displayBooks();
+    displayBooks(myLibrary);
+}
+
+function createContainer(object) {
+    const containerDiv = document.createElement('div');
+    const titleHeading = document.createElement('h3');
+    const authorPara = document.createElement('p');
+    const pagesPara = document.createElement('p');
+    const readBtn = document.createElement('button');
+    const delBtn = document.createElement('button');
+
+    containerDiv.classList.add('book-container');
+    containerDiv.setAttribute('data-array', myLibrary.indexOf(object));
+    titleHeading.classList.add('title-heading');
+    readBtn.classList.add('read-btn');
+    delBtn.classList.add('del-btn');
+
+    titleHeading.textContent = object.title;
+    authorPara.textContent = object.author;
+    pagesPara.textContent = object.pages;
+    readBtn.textContent = object.read;
+    delBtn.textContent = 'Remove';
+
+    containerDiv.appendChild(titleHeading);
+    containerDiv.appendChild(authorPara);
+    containerDiv.appendChild(pagesPara);
+    containerDiv.appendChild(readBtn);
+    containerDiv.appendChild(delBtn);
+    bookGrid.appendChild(containerDiv);
+    bookContainers.push(containerDiv);
 }
 
 function displayBooks() {
     for (const object of myLibrary) {
         if (object.displayed !== true) {
-            const containerDiv = document.createElement('div');
-            containerDiv.classList.add('book-container');
-
-            for (const key in object) {
-                const para = document.createElement('p');
-                para.textContent = `${object[key]}`;
-                containerDiv.appendChild(para);
-            }
-            const delBtn = document.createElement('button');
-            delBtn.classList.add('del-btn');
-            delBtn.textContent = 'Remove';
-            containerDiv.appendChild(delBtn);
-
-            containerDiv.setAttribute('data-array', myLibrary.indexOf(object));
-            bookContainers.push(containerDiv);
-            bookGrid.appendChild(containerDiv);
-
-            delBtn.addEventListener('click', () => {
-                for (let i = 0; i <= myLibrary.length; i++) {
-                    if (Number(containerDiv.dataset.array) === i) {
-                        myLibrary.splice(Number(containerDiv.dataset.array), 1);
-                        containerDiv.remove();
-                        bookContainers.splice(Number(containerDiv.dataset.array), 1);
-                    }
-                }
-                displayBooks();
-            });
+            createContainer(object);
             object.displayed = true;
-        } else {
-            for (const container of bookContainers) {
-                if (container.innerText.includes(object.title)) {
-                container.setAttribute('data-array', myLibrary.indexOf(object));
-                console.log(container);
-                }
-            }
         }
     }
 }
+
+displayBooks(myLibrary);
+
+const bookContainer = document.querySelector('.book-container');
+
+function updateAttribute() {
+    for (let i = 0; i < myLibrary.length; i++) {
+        bookContainers[i].setAttribute('data-array', i);
+    }
+};
+
+Book.prototype.toggleReadStatus = function(i) {
+    if (myLibrary[i].read === "Read") {
+        myLibrary[i].read = "Not read";
+        return "Not read";
+    } else {
+        myLibrary[i].read = "Read";
+        return "Read";
+    }
+}
+
+bookGrid.addEventListener('click', (e) => {
+    const clickedBtn = e.target;
+    const container = clickedBtn.parentNode;
+    if (clickedBtn.classList.contains('del-btn')) {
+        for (let i = 0; i < myLibrary.length; i++) {
+            if (Number(container.dataset.array) === i) {
+                myLibrary.splice(Number(container.dataset.array), 1);
+                bookContainers.splice(Number(container.dataset.array), 1);
+                container.remove();
+            }
+        }
+        updateAttribute();
+    }
+    if (clickedBtn.classList.contains('read-btn')) {
+        for (let i = 0; i < myLibrary.length; i++) {
+            if (Number(container.dataset.array) === i) {
+                clickedBtn.textContent = myLibrary[i].toggleReadStatus(i);
+            }
+        }
+    }
+});
 
 submitBtn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -99,17 +144,3 @@ modal.addEventListener('click', (e) => {
         modal.close();
     }
 })
-
-//Manually added books
-
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'Not read yet');
-const theLastKingdom = new Book('The Last Kingdom', 'Bernard Cornwell', '352 pages', 'Read');
-const bladeRunner = new Book('Do Androids Dream of Electric Sheep?', 'Philip K. Dick', '210 pages', 'Not read yet');
-const affairAtStyles = new Book('The Mysterious Affair at Styles', 'Agatha Christie', '296 pages', 'Not read yet');
-
-myLibrary.push(theHobbit);
-myLibrary.push(theLastKingdom);
-myLibrary.push(bladeRunner);
-myLibrary.push(affairAtStyles);
-
-displayBooks();
