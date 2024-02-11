@@ -12,10 +12,10 @@ const bookGrid = document.querySelector('.book-grid');
 const myLibrary = [];
 const bookContainers = [];
 
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'Not read');
-const theLastKingdom = new Book('The Last Kingdom', 'Bernard Cornwell', '352 pages', 'Read');
-const bladeRunner = new Book('Do Androids Dream of Electric Sheep?', 'Philip K. Dick', '210 pages', 'Not read');
-const affairAtStyles = new Book('The Mysterious Affair at Styles', 'Agatha Christie', '296 pages', 'Not read');
+const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295', 'Not read');
+const theLastKingdom = new Book('The Last Kingdom', 'Bernard Cornwell', '352', 'Read');
+const bladeRunner = new Book('Do Androids Dream of Electric Sheep?', 'Philip K. Dick', '210', 'Not read');
+const affairAtStyles = new Book('The Mysterious Affair at Styles', 'Agatha Christie', '296', 'Not read');
 
 myLibrary.push(theHobbit);
 myLibrary.push(theLastKingdom);
@@ -56,8 +56,8 @@ function createContainer(object) {
     delBtn.classList.add('del-btn');
 
     titleHeading.textContent = object.title;
-    authorPara.textContent = object.author;
-    pagesPara.textContent = object.pages;
+    authorPara.textContent = "by " + object.author;
+    pagesPara.textContent = "Pages: " + object.pages;
     readBtn.textContent = object.read;
     delBtn.textContent = 'Remove';
 
