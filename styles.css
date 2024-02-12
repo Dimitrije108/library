@@ -18,25 +18,23 @@ body {
     background-color: #e4e4e4;
 }
 
-.page {
-    height: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 6fr;
-}
-
 button {
     font-family: inherit;
     font-size: 100%;
 }
 
+button:hover {
+    box-shadow: 3px 4px 10px -2px rgba(64,64,64,0.53);
+}
+
 /*HEADER styles*/
 
 .header {
+    
     display: flex;
     align-items: center;
 
-    background-color: #e9d5ff;
+    background-color: #8bff93;
     box-shadow: 2px -5px 12px 8px rgba(122, 122, 122, 1);
 
     position: sticky;
@@ -71,18 +69,16 @@ button {
     font-family: biolibertBold, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 2rem;
-    font-weight: 500;
 }
 
 .add-button:hover {
     cursor: pointer;
-    background-color: #e9d5ff;
+    background-color: #e4e4e4;
     border: 2px dashed black;
-    box-shadow: 3px 5px 20px -5px rgba(92,92,92,1);
 }
 
 .add-button:active {
-    background-color: #d8b4fe;
+    background-color: #c0bfbf;
 }
 
 /* MAIN styles */
@@ -93,7 +89,7 @@ button {
 
 .book-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-template-rows: 2, 1fr;
     grid-auto-rows: 1fr;
     gap: 2rem;
@@ -104,24 +100,35 @@ button {
     padding: 1.5rem 2rem 1.5rem 2rem;
     margin: 0;
 
-    border-left: 0.5rem solid rgb(255, 223, 94);
     border-radius: 0.5rem;
 
     display: grid;
     grid-template-rows: repeat(5, 1fr);
 }
 
+.book-container:hover {
+    box-shadow: 3px 4px 10px -2px rgba(64,64,64,0.53);
+}
+
 .title-heading {
+    font-size: 1.2rem;
     text-align: center;
     letter-spacing: 0.05rem;
-    margin: 0 0 1rem 0;
+    margin: 0 0 0.5rem 0;
 }
 
 .book-container p {
-    margin: 1rem 0 0 0;
+    margin: 0;
     font-size: 1.2rem;
+    align-self: center;
 }
 
 .book-container button {
-    margin: 1rem 0 0 0;
+    align-self: end;
+
+    font-size: 1.2rem;
+    padding: 0.4rem 2rem;
+
+    border: 1px solid black;
+    border-radius: 2rem;
 }

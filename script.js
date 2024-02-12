@@ -61,6 +61,8 @@ function createContainer(object) {
     readBtn.textContent = object.read;
     delBtn.textContent = 'Remove';
 
+    readBtn.textContent === "Read" ? containerDiv.style.borderLeft = "0.8rem solid #36e954" : containerDiv.style.borderLeft = "0.8rem solid #ff4949";
+
     containerDiv.appendChild(titleHeading);
     containerDiv.appendChild(authorPara);
     containerDiv.appendChild(pagesPara);
@@ -82,6 +84,7 @@ function displayBooks() {
 displayBooks(myLibrary);
 
 const bookContainer = document.querySelector('.book-container');
+const readBtn = document.querySelector('.read-btn');
 
 function updateAttribute() {
     for (let i = 0; i < myLibrary.length; i++) {
@@ -103,11 +106,13 @@ bookGrid.addEventListener('click', (e) => {
     const clickedBtn = e.target;
     const container = clickedBtn.parentNode;
     if (clickedBtn.classList.contains('del-btn')) {
-        for (let i = 0; i < myLibrary.length; i++) {
-            if (Number(container.dataset.array) === i) {
-                myLibrary.splice(Number(container.dataset.array), 1);
-                bookContainers.splice(Number(container.dataset.array), 1);
-                container.remove();
+        if (confirm("Are you sure you want to remove this book from your library?")) {
+            for (let i = 0; i < myLibrary.length; i++) {
+                if (Number(container.dataset.array) === i) {
+                    myLibrary.splice(Number(container.dataset.array), 1);
+                    bookContainers.splice(Number(container.dataset.array), 1);
+                    container.remove();
+                }
             }
         }
         updateAttribute();
@@ -116,6 +121,7 @@ bookGrid.addEventListener('click', (e) => {
         for (let i = 0; i < myLibrary.length; i++) {
             if (Number(container.dataset.array) === i) {
                 clickedBtn.textContent = myLibrary[i].toggleReadStatus(i);
+                clickedBtn.textContent === "Read" ? container.style.borderLeft = "0.8rem solid #36e954" : container.style.borderLeft = "0.8rem solid #ff4949";
             }
         }
     }
