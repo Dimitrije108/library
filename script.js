@@ -61,7 +61,7 @@ function createContainer(object) {
     readBtn.textContent = object.read;
     delBtn.textContent = 'Remove';
 
-    readBtn.textContent === "Read" ? containerDiv.style.borderLeft = "0.8rem solid #36e954" : containerDiv.style.borderLeft = "0.8rem solid #ff4949";
+    readBtn.textContent === "Read" ? containerDiv.style.borderLeft = "0.6rem solid #36e954" : containerDiv.style.borderLeft = "0.6rem solid #ff4949";
 
     containerDiv.appendChild(titleHeading);
     containerDiv.appendChild(authorPara);
@@ -121,7 +121,7 @@ bookGrid.addEventListener('click', (e) => {
         for (let i = 0; i < myLibrary.length; i++) {
             if (Number(container.dataset.array) === i) {
                 clickedBtn.textContent = myLibrary[i].toggleReadStatus(i);
-                clickedBtn.textContent === "Read" ? container.style.borderLeft = "0.8rem solid #36e954" : container.style.borderLeft = "0.8rem solid #ff4949";
+                clickedBtn.textContent === "Read" ? container.style.borderLeft = "0.6rem solid #36e954" : container.style.borderLeft = "0.6rem solid #ff4949";
             }
         }
     }

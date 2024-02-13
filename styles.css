@@ -24,18 +24,18 @@ button {
 }
 
 button:hover {
-    box-shadow: 3px 4px 10px -2px rgba(64,64,64,0.53);
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.3);
+    cursor: pointer;
 }
 
 /*HEADER styles*/
 
 .header {
-    
     display: flex;
     align-items: center;
 
-    background-color: #8bff93;
-    box-shadow: 2px -5px 12px 8px rgba(122, 122, 122, 1);
+    background-color: #8aa3b8;
+    box-shadow: 0px 3px 5px 1px rgba(0,0,0,0.4);
 
     position: sticky;
     top: 0;
@@ -72,7 +72,6 @@ button:hover {
 }
 
 .add-button:hover {
-    cursor: pointer;
     background-color: #e4e4e4;
     border: 2px dashed black;
 }
@@ -84,7 +83,8 @@ button:hover {
 /* MAIN styles */
 
 .main {
-    margin: 3vh 10vw 5vh 10vw;
+    margin: 3vh 10vw 0 10vw;
+    padding-bottom: 2rem;
 }
 
 .book-grid {
@@ -107,7 +107,7 @@ button:hover {
 }
 
 .book-container:hover {
-    box-shadow: 3px 4px 10px -2px rgba(64,64,64,0.53);
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.3);
 }
 
 .title-heading {
@@ -121,6 +121,8 @@ button:hover {
     margin: 0;
     font-size: 1.2rem;
     align-self: center;
+
+    margin: 0 0 0.5rem 0;
 }
 
 .book-container button {
@@ -129,6 +131,90 @@ button:hover {
     font-size: 1.2rem;
     padding: 0.4rem 2rem;
 
-    border: 1px solid black;
-    border-radius: 2rem;
+    border: none;
+    border-radius: 0.5rem;
+
+    margin: 0 0 0.5rem 0;
+}
+
+.book-container button:hover {
+    background-color: white;
+}
+
+/* MODAL styling */
+
+.modal {
+    width: 350px;
+    max-width: 50ch;
+
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.3);
+
+    padding: 2rem 1rem;
+}
+
+.modal::backdrop {
+    background: rgb(0 0 0 / .3);
+}
+
+fieldset {
+    border: none;
+}
+
+legend {
+    font-family: biolibertBold, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 1.5rem;
+
+    padding-bottom: 1.5rem;
+}
+
+.inputField {
+    margin: 1rem 0;
+
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+label {
+    font-size: 1.2rem;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 0;
+
+    font-size: 1rem;
+}
+
+input:focus {
+    outline: none;
+    border-bottom: 2px solid black;
+}
+
+#read {
+    justify-self: start;
+    margin: 3px 3px 3px 0;
+    width: 1rem;
+}
+
+.submitBtnDiv {
+    text-align: center;
+}
+
+.submitBtn {
+    width: 100%;
+    padding: 0.4rem 2rem;
+    margin-top: 1rem;
+
+    font-size: 1.2rem;
+
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.submitBtn:hover {
+    background-color: white;
 }
