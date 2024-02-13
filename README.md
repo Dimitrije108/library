@@ -1,6 +1,6 @@
 # Library
 
-This is small Library app created as part of The Odin Project curriculum.
+This is a small Library app created as part of The Odin Project curriculum.
 
 ### <a href="https://dimitrije108.github.io/library/">LIVE VERSION</a>
 
@@ -11,6 +11,8 @@ This is small Library app created as part of The Odin Project curriculum.
 * Manipulating DOM elements and associating them with corresponding objects
 * Iterating through objects in an array
 * Creating and styling modals
+
+---------------------------------------------------------------------------------------------------------------
 
 ![preview screenshot](screenshots/preview.png)
 
