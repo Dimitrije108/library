@@ -12,6 +12,25 @@ const bookGrid = document.querySelector('.book-grid');
 const myLibrary = [];
 const bookContainers = [];
 
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    toggleReadStatus(i) {
+        if (myLibrary[i].read === "Read") {
+            myLibrary[i].read = "Not read";
+            return "Not read";
+        } else {
+            myLibrary[i].read = "Read";
+            return "Read";
+        }
+    }
+}
+
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295', 'Not read');
 const theLastKingdom = new Book('The Last Kingdom', 'Bernard Cornwell', '352', 'Read');
 const bladeRunner = new Book('Do Androids Dream of Electric Sheep?', 'Philip K. Dick', '210', 'Not read');
@@ -21,13 +40,6 @@ myLibrary.push(theHobbit);
 myLibrary.push(theLastKingdom);
 myLibrary.push(bladeRunner);
 myLibrary.push(affairAtStyles);
-
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
 
 function addBookToLibrary() {
     if (bookRead.checked) {
@@ -91,16 +103,6 @@ function updateAttribute() {
         bookContainers[i].setAttribute('data-array', i);
     }
 };
-
-Book.prototype.toggleReadStatus = function(i) {
-    if (myLibrary[i].read === "Read") {
-        myLibrary[i].read = "Not read";
-        return "Not read";
-    } else {
-        myLibrary[i].read = "Read";
-        return "Read";
-    }
-}
 
 bookGrid.addEventListener('click', (e) => {
     const clickedBtn = e.target;
